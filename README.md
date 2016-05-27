@@ -11,11 +11,11 @@ The project originated on [particle.io spark core](https://www.particle.io) - se
 
 For running *messagetorch* on [Onion Omega](https://onion.io/store/), you need to install the *ws2812-draiveris* kernel driver ([source on github](https://github.com/jnweiger/ws2812_sprites/tree/master/carambola2/package/ws2812_draiveris/src)). To allow experimenting for those Omega users who don't have a OpenWrt buildroot, [here's a installable package](http://plan44.ch/downloads/experimental/kmod-ws2812-draiveris_3.18.29%2B0.1-9_ar71xx.ipk).
 
-You can install it from the Onion console:
+You can install it from the Onion console (--force-depends may be needed when kernel version does not match exactly -> experimental, might crash, make backups!)
 
     cd /tmp
     wget http://plan44.ch/downloads/experimental/kmod-ws2812-draiveris_3.18.29%2B0.1-9_ar71xx.ipk
-    opkg install /tmp/kmod-ws2812-draiveris_3.18.29+0.1-9_ar71xx.ipk
+    opkg install /tmp/kmod-ws2812-draiveris_3.18.29+0.1-9_ar71xx.ipk --force-depends
 
 To activate the driver for 256 LEDs with data pin connected to GPIO7:
 
@@ -31,7 +31,7 @@ Assuming a "torch" with 18 windings of 13 LEDs each, start the torch with
 
     messagetorch -W 13 -H 18 "Hello Omega"
 
-Once running, you can remote control it by sending UDP packets. The following is from a Mac OS X command line (nc options might vary on other platforms):
+Once running, you can remote control it by sending UDP packets. The following is from a Mac OS X command line (nc options might vary on other platforms, nc on omega itself does not have the -u option):
 
 	echo -n 'New Text' | nc -w 1 -u my.omegas.ip.address 4442
 	
