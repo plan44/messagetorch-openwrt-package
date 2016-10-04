@@ -9,7 +9,7 @@ The project originated on [particle.io spark core](https://www.particle.io) - se
 
 ![Hello Spark](MessageTorch.gif)
 
-For running *messagetorch* on [Onion Omega](https://onion.io/store/), you need to install the *ws2812-draiveris* kernel driver ([source on github](https://github.com/jnweiger/ws2812_sprites/tree/master/carambola2/package/ws2812_draiveris/src)). To allow experimenting for those Omega users who don't have a OpenWrt buildroot, [here's a installable package](http://plan44.ch/downloads/experimental/kmod-ws2812-draiveris_3.18.29%2B0.1-9_ar71xx.ipk).
+For running *messagetorch* on [Onion Omega](https://onion.io/store/), you need to install the *ws2812-draiveris* kernel driver ([source on github](https://github.com/jnweiger/ws2812_sprites/tree/master/carambola2/package/ws2812_draiveris/src)). To allow experimenting for those Omega users who don't have a OpenWrt buildroot, [here's a installable package](http://plan44.ch/downloads/experimental/kmod-ws2812-draiveris_3.18.29%2B0.1-9_ar71xx.ipk). [Update: For those who want to experiment with the SK6812 RGBW LEDs, there's a [newer version of the ws2812-draiveris driver](http://plan44.ch/downloads/experimental/kmod-ws2812-draiveris_4.1.23%2B0.1-9_ar71xx.ipk), which supports SK6812 with the "rgbw" flag)
 
 You can install it from the Onion console (--force-depends may be needed when kernel version does not match exactly -> experimental, might crash, make backups!)
 
@@ -19,7 +19,8 @@ You can install it from the Onion console (--force-depends may be needed when ke
 
 To activate the driver for 256 LEDs with data pin connected to GPIO7:
 
-    insmod ws2812-draiveris gpios=7 leds_per_gpio=256
+    insmod ws2812-draiveris gpios=7 leds_per_gpio=256 # for WS2812
+    insmod ws2812-draiveris gpios=7 leds_per_gpio=256 rgbw=1 # for SK6812
     
 Now you can install messagetorch (again, [installable package](http://plan44.ch/downloads/experimental/messagetorch_0.1-1_ar71xx.ipk) available for convenience)
     
